@@ -15,6 +15,7 @@ if (!Data.SessionCookieExists) {
     string? Cookie = Console.ReadLine();
     if (Cookie is null || Cookie == "") return;
     File.WriteAllText(Data.SessionCookieDir, Cookie.Trim());
+    Console.Clear();
 }
 
 do {
