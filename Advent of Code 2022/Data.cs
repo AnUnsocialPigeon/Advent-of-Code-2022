@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Advent_of_Code_2022 {
     internal class Data {
-        public static string SessionCookieDir => $"{Directory.GetCurrentDirectory()}SessionCookie.txt";
+        public static string SessionCookieDir => $"{Directory.GetCurrentDirectory()}/SessionCookie.txt";
         public static string SessionCookie => File.ReadAllText(SessionCookieDir);
         public static bool SessionCookieExists => File.Exists(SessionCookieDir);
 
@@ -18,7 +18,7 @@ namespace Advent_of_Code_2022 {
         /// <returns></returns>
         public static async Task<string[]> GetDataAsync(int year, int day) {
             // File Management
-            string dir = $"{Directory.GetCurrentDirectory()}Input_{year}";
+            string dir = $"{Directory.GetCurrentDirectory()}/Input_{year}";
             string fileDir = $"{dir}/{day}.txt";
             if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
             if (File.Exists(fileDir)) return File.ReadAllLines(fileDir);
@@ -32,8 +32,9 @@ namespace Advent_of_Code_2022 {
             var response = await httpClient.GetAsync(url);
             // Success?
             if (response.IsSuccessStatusCode) {
-                string s = await response.Content.ReadAsStringAsync();
-                File.WriteAllText(fileDir, s);
+                string[] s = (await response.Content.ReadAsStringAsync()).Trim().Split('\n');
+                File.WriteAllLines(fileDir, s);
+                return s;
             }
             return FailedString;
         }

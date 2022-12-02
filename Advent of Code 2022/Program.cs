@@ -5,6 +5,7 @@ using Figgle;
 // Stores a dictionary for fast access to every single day. Maps the day to the function's Main().
 Dictionary<int, Func<string[], string>> Days = new() {
     { 1, (string[] input) => new Day_1(input).Main() },
+    { 2, (string[] input) => new Day_2(input).Main() },
 };
 string? ans;
 int day = -1;
