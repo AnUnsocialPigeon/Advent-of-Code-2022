@@ -6,6 +6,7 @@ using Figgle;
 Dictionary<int, Func<string[], string>> Days = new() {
     { 1, (string[] input) => new Day_1(input).Main() },
     { 2, (string[] input) => new Day_2(input).Main() },
+    { 3, (string[] input) => new Day_3(input).Main() },
 };
 string? ans;
 int day = -1;
