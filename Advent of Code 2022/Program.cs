@@ -7,6 +7,7 @@ Dictionary<int, Func<string[], string>> Days = new() {
     { 1, (string[] input) => new Day_1(input).Main() },
     { 2, (string[] input) => new Day_2(input).Main() },
     { 3, (string[] input) => new Day_3(input).Main() },
+    { 4, (string[] input) => new Day_4(input).Main() },
 };
 string? ans;
 int day = -1;
@@ -20,31 +21,37 @@ if (!Data.SessionCookieExists) {
     Console.Clear();
 }
 
-do {
-    // Get the day
-    Console.Write($"{FiggleFonts.SBlood.Render("Advent Of")}{FiggleFonts.SBlood.Render("Code 2022")}\nLeave blank for latest day.\nDays: 1 - {Days.Keys.Max()} avaliable.\nDay: ");
-    ans = Console.ReadLine();
-    day = GetDay(ans);
 
-    Console.Clear();
-} while (day == -1);
+bool LoopCondition = true;
+Console.CursorVisible = false;
+while (LoopCondition) {
+    do {
+        // Get the day
+        Console.Write($"{FiggleFonts.LilDevil.Render("Advent Of")}{FiggleFonts.Ghost.Render("Code 2022")}\nLeave blank for latest day.\nType 'E' or 'Exit' to Exit\nDays: 1 - {Days.Keys.Max()} avaliable.\nDay: ");
+        ans = Console.ReadLine();
+        
+        if (ans is not null && (ans.ToUpper() == "E" || ans.ToUpper() == "EXIT"))
+            return;
+        
+        day = GetDay(ans);
+        Console.Clear();
+    } while (day == -1);
 
+    // Get Data
+    string[] data = await Data.GetDataAsync(2022, day);
 
-// Get Data
-string[] data = await Data.GetDataAsync(2022, day);
+    // Failure
+    if (data == Data.FailedString) {
+        Console.WriteLine("Failed to get the data from the remote server");
+        Console.ReadLine();
+        continue;
+    }
 
-// Failure
-if (data == Data.FailedString) {
-    Console.WriteLine("Failed to get the data from the remote server");
+    // Get the result/answer from that day
+    Console.WriteLine($"{FiggleFonts.Alligator3.Render($"Day {day}")}\n{Days[day](data)}");
     Console.ReadLine();
-    return;
+    Console.Clear();
 }
-
-// Get the result/answer from that day
-Console.WriteLine($"Answer for day {day}:\n{Days[day](data)}");
-Console.ReadLine();
-
-
 /// Gets the day from the input. Retuns -1 if invalid. Blank returns last day.
 int GetDay(string? input) {
     if (input is null) return -1;
