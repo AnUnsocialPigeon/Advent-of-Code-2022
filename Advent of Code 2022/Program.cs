@@ -8,7 +8,9 @@ Dictionary<int, Func<string[], string>> Days = new() {
     { 2, (string[] input) => new Day_2(input).Main() },
     { 3, (string[] input) => new Day_3(input).Main() },
     { 4, (string[] input) => new Day_4(input).Main() },
+    { 5, (string[] input) => new Day_5(input).Main() },
 };
+
 string? ans;
 int day = -1;
 
@@ -22,12 +24,12 @@ if (!Data.SessionCookieExists) {
 }
 
 
-bool LoopCondition = true;
 Console.CursorVisible = false;
+bool LoopCondition = true;
 while (LoopCondition) {
     do {
         // Get the day
-        Console.Write($"{FiggleFonts.LilDevil.Render("Advent Of")}{FiggleFonts.Ghost.Render("Code 2022")}\nLeave blank for latest day.\nType 'E' or 'Exit' to Exit\nDays: 1 - {Days.Keys.Max()} avaliable.\nDay: ");
+        Console.Write($"{FiggleFonts.LilDevil.Render("Advent     Of")}{FiggleFonts.Ghost.Render("Code     2022")}\nLeave blank for latest day.\nType 'E' or 'Exit' to Exit\nDays: 1 - {Days.Keys.Max()} avaliable.\nDay: ");
         ans = Console.ReadLine();
         
         if (ans is not null && (ans.ToUpper() == "E" || ans.ToUpper() == "EXIT"))
@@ -48,7 +50,7 @@ while (LoopCondition) {
     }
 
     // Get the result/answer from that day
-    Console.WriteLine($"{FiggleFonts.Alligator3.Render($"Day {day}")}\n{Days[day](data)}");
+    Console.WriteLine($"{FiggleFonts.Alligator3.Render($"D a y   {day}")}\n{Days[day](data)}");
     Console.ReadLine();
     Console.Clear();
 }

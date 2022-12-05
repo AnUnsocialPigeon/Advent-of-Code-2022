@@ -32,7 +32,7 @@ namespace Advent_of_Code_2022 {
             var response = await httpClient.GetAsync(url);
             // Success?
             if (response.IsSuccessStatusCode) {
-                string[] s = (await response.Content.ReadAsStringAsync()).Trim().Split('\n');
+                string[] s = (await response.Content.ReadAsStringAsync()).TrimEnd().Split('\n'); // Trim start breaks task 5
                 File.WriteAllLines(fileDir, s);
                 return s;
             }
