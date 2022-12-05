@@ -8,7 +8,7 @@ namespace Advent_of_Code_2022.Code {
     internal class Day_5 : AdventOfCode {
         public Day_5(string[] input) : base(input) { }
 
-        // An array of lists of stacks -> array is 2 large, index 0 = part 1, index 1 = part 2.
+        // An array of lists of a stack -> array is 2 large, index 0 = part 1, index 1 = part 2.
         public List<Stack<char>>[] Crates = new List<Stack<char>>[2] { new(), new() };
 
         public override string Main() {
