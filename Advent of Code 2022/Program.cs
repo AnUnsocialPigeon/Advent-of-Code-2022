@@ -11,6 +11,7 @@ Dictionary<int, Func<string[], string>> Days = new() {
     { 5, (string[] input) => new Day_5(input).Main() },
     { 6, (string[] input) => new Day_6(input).Main() },
     { 7, (string[] input) => new Day_7(input).Main() },
+    { 8, (string[] input) => new Day_8(input).Main() },
 };
 
 string? ans;
@@ -52,7 +53,8 @@ while (LoopCondition) {
     }
 
     // Get the result/answer from that day
-    Console.WriteLine($"{FiggleFonts.Alligator3.Render($"D a y   {day}")}\n{Days[day](data)}");
+    Console.WriteLine($"{FiggleFonts.Alligator3.Render($"D a y   {day}")}");
+    Console.WriteLine($"{Days[day](data)}"); // I want everything to happen after the ASCII render
     Console.ReadLine();
     Console.Clear();
 }
