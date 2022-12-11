@@ -12,6 +12,7 @@ Dictionary<int, Func<string[], string>> Days = new() {
     { 6, (string[] input) => new Day_6(input).Main() },
     { 7, (string[] input) => new Day_7(input).Main() },
     { 8, (string[] input) => new Day_8(input).Main() },
+    { 9, (string[] input) => new Day_9(input).Main() },
 };
 
 string? ans;
